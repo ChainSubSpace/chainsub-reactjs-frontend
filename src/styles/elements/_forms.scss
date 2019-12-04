@@ -1,0 +1,104 @@
+// https://www.sanwebe.com/2014/08/css-html-forms-designs
+
+//noinspection SassScssResolvedByNameOnly
+
+.form.article_form {
+  max-width:unset;
+  margin:unset;
+  border-left: unset;
+  box-shadow:unset;
+
+}
+
+.status.error {
+  display: block;
+  background: $primary;
+  text-align: center;
+  color: $white;
+  font-weight: bold;
+
+  padding: 5px;
+  font-size: 14px;
+
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.status {
+  display: none;
+}
+
+.form {
+  max-width: 450px;
+  background: $white;
+  padding: 30px;
+  margin: 50px auto;
+  @include z-depth-5;
+  border-left: 5px solid $dark_color;
+
+
+
+  .status {
+    display: none;
+  }
+  .status.error {
+    display: block;
+    background: $primary;
+    text-align: center;
+    color: $black;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .error {
+    color: $primary;
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 5px;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  ul li {
+    display: block;
+    margin-bottom: 10px;
+    min-height: 35px;
+  }
+  ul li .field-style {
+    box-sizing: border-box;
+    padding: 10px;
+    outline: none;
+    border: 0;
+    font-size: 14px;
+    background: $lightgrey;
+    color: $black;
+  }
+  .field-style.error {
+    background: rgba($primary, 0.2);
+  }
+
+  ul li .field-style:focus {
+    border: 0;
+    background: rgba($secondary, 0.5);
+  }
+  ul li .field-split {
+    width: 49%;
+  }
+  ul li .field-full {
+    width: 100%;
+  }
+  ul li input.align-left {
+    float: left;
+  }
+  ul li input.align-right {
+    float: right;
+  }
+  ul li textarea {
+    width: 100%;
+    height: 100px;
+  }
+
+}

@@ -1,0 +1,5 @@
+exports.createPages = require('./src/actions/create-pages')
+exports.onCreateNode = require('./src/actions/on-create-node')
+exports.createResolvers = require('./src/actions/create-resolvers')
+exports.onCreatePage = require('./src/actions/on-create-page')
+exports.onCreateWebpackConfig = require('./src/actions/on-create-webpack-config')

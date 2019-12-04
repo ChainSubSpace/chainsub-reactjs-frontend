@@ -1,0 +1,252 @@
+//noinspection SassScssResolvedByNameOnly
+.schema {
+  text-align: center;
+  z-index: z('schema');
+
+  h1 {
+    line-height: unset;
+  }
+
+  .status__todo {
+    color: $primary;
+  }
+
+  .status__done {
+    color: $dark_color;
+  }
+
+  .status__in_progress {
+    background-color: $secondary;
+    color: $dark_color;
+  }
+
+  .status__funding {
+    background-color: $dark_color;
+    color: $secondary;
+  }
+
+  .schema__title {
+    margin-bottom: 30px;
+
+    strong {
+      padding-left: 5px;
+      padding-right: 5px;
+      display: inline-block;
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+    }
+  }
+
+  .schema__part.schema__part_small {
+    .schema__item {
+      width: 255px;
+      min-height: 50px;
+    }
+  }
+
+  .schema__part {
+    margin: 20px auto;
+
+    h4 {
+      font-size: 1.4rem;
+    }
+
+    .schema__group {
+      margin: 10px auto 20px;
+      position: relative;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &:last-child {
+      .lines {
+        height: 50px;
+      }
+    }
+  }
+
+  .schema__item {
+    position: relative;
+    padding: 10px;
+    display: inline-block;
+    width: 340px;
+    min-height: 150px;
+    color: $black;
+    font-weight: $normal;
+  }
+
+  .schema__card.schema__card_event {
+    display: flex;
+    align-items: baseline;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    img {
+      border-radius: 50%;
+      background-color: $lightgrey;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    li,
+    .links {
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+
+    li {
+      font-weight: 700;
+      display: block;
+    }
+
+    li:before,
+    .links:before {
+      content: '\E315';
+      color: $primary;
+      //noinspection CssNoGenericFontName
+      font-family: 'fontello';
+    }
+  }
+  .schema__card {
+    @include z-depth-5;
+    padding: 20px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    transition: box-shadow ease 0.2s;
+
+    &:not(:hover) {
+      @include z-depth-0;
+    }
+
+    h3 {
+      color: $primary;
+      margin-bottom: 10px;
+    }
+
+    .schema__icon {
+      color: $primary;
+      font-size: 6rem;
+      margin-right: 20px;
+    }
+
+    .schema__content p {
+      font-size: 1.4rem;
+    }
+  }
+
+  .lines {
+    position: absolute;
+    z-index: z('below');
+    height: calc(100% + 80px);
+    width: calc(100% - 80px);
+    top: -25px;
+    left: 40px;
+  }
+
+  .line {
+    stroke-width: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 5;
+    animation: dash 1s infinite linear;
+  }
+
+  @include mq($max-width: $vw-huge) {
+  }
+  @include mq($max-width: $vw-thin) {
+    .schema__item {
+      padding: 10px 0;
+      width: calc(100% - 20px);
+    }
+  }
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 10;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+//noinspection SassScssResolvedByNameOnly
+.schema__theme_one {
+  background-color: $lightgrey;
+
+  .schema__title {
+    color: $dark_color;
+
+    strong {
+      color: $primary;
+      background: unset;
+    }
+  }
+
+  .schema__part {
+    h4 {
+      color: $lightgrey;
+      background-color: $primary;
+    }
+  }
+
+  .schema__card {
+    background-color: $white;
+    border-left: 5px solid $primary;
+    border-right: 5px solid $white;
+  }
+
+  .line {
+    stroke: $dark_color;
+  }
+
+  .lines {
+    background-color: $lightgrey;
+  }
+}
+
+//noinspection SassScssResolvedByNameOnly
+.schema__theme_two {
+  background-color: $primary;
+
+  .schema__title {
+    color: $white;
+
+    strong {
+      color: $secondary;
+      background: $dark_color;
+    }
+  }
+
+  .schema__part {
+    h4 {
+      color: $primary;
+      background-color: $dark_color;
+    }
+  }
+
+  .schema__card {
+    background-color: $white;
+    border-left: 5px solid $dark_color;
+    border-right: 5px solid $white;
+  }
+
+  .line {
+    stroke: $white;
+  }
+
+  .lines {
+    background-color: $primary;
+  }
+}
