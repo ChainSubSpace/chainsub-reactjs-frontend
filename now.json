@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "name": "beta.chainsub.space",
+  "alias": [
+    "beta.chainsub.space"
+  ],
+  "builds": [
+    {
+      "src": "/public/**",
+      "use": "@now/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/blog/(.*)",
+      "dest": "/public/blog"
+    },
+    {
+      "src": "/user/(.*)",
+      "dest": "/public/user"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "status": 404,
+      "dest": "/public/404"
+    }
+  ]
+}
