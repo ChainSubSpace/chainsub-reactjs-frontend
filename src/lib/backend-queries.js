@@ -245,8 +245,8 @@ export const GET_WALLETS = gql`
 `
 
 export const WITHDRAW = gql`
-    mutation($amount: Int!, $to: String!) {
-        withdraw(amount: $amount, to: $to) {
+    mutation($amount: Int!, $to: String! $from: String) {
+        withdraw(amount: $amount, to: $to, from: $from) {
             status
             wallet {
                 ...WalletDitails

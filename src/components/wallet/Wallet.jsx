@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-import { isEqual } from 'lodash-es'
+import { isEqual, get } from 'lodash-es'
 import { navigate } from 'gatsby'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 
@@ -85,11 +85,17 @@ export default ({ wallet, userBalance }) => {
 
                   console.log(request)
 
+                  let response
                   try {
-                    await withdraw({ variables: request })
+                    response = await withdraw({ variables: request })
                   } catch (error) {
-                    setStatus('Identifier or password invalid.')
+                    setStatus(error.toString())
                   }
+
+                  const status = get(response, 'data.withdraw.status', null)
+                  console.log(status)
+                  if (status) setStatus(status)
+
                 }}
               >
                 {({ isSubmitting, errors, status, touched }) => (
