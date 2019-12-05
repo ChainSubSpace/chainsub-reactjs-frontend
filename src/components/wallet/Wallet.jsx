@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import cn from 'classnames'
 import { isEqual, get } from 'lodash-es'
 import { navigate } from 'gatsby'
@@ -11,7 +11,6 @@ import QRCode from './QRCode'
 import { prettyPrintAmount } from '../../lib/helpers'
 
 export default ({ wallet, userBalance }) => {
-
   const [withdraw] = useMutation(WITHDRAW)
 
   const [clipBoardNotification, showClipBoardNotification] = useState(false)
@@ -27,6 +26,15 @@ export default ({ wallet, userBalance }) => {
     showClipBoardNotification(true)
   }
 
+  const manual = isWithdraw ? (
+    <Fragment>
+      Use the <strong>QR</strong> code or the <strong>TRTL</strong> address above, to{' '}
+      <strong>deposit</strong> funds into this wallet.
+    </Fragment>
+  ) : (
+    <Fragment>To support the author, you can <strong>deposit TRTL</strong> directly to this address.</Fragment>
+  )
+
   return (
     <div className="wallet">
       <div className="wallet_wrapper">
@@ -38,7 +46,7 @@ export default ({ wallet, userBalance }) => {
           <div className="address" onClick={addressOnClickEvent}>
             {wallet.address}
           </div>
-          <div>To support the author, you can deposit TRTL directly to this address.</div>
+          <div>{manual}</div>
           {userBalance.address ? (
             <div className="withdraw">
               <div className="balance">
@@ -83,8 +91,6 @@ export default ({ wallet, userBalance }) => {
 
                   if (wallet.articleSlug && isWithdraw) request.from = wallet.articleSlug
 
-                  console.log(request)
-
                   let response
                   try {
                     response = await withdraw({ variables: request })
@@ -93,9 +99,8 @@ export default ({ wallet, userBalance }) => {
                   }
 
                   const status = get(response, 'data.withdraw.status', null)
-                  console.log(status)
-                  if (status) setStatus(status)
 
+                  if (status) setStatus(status)
                 }}
               >
                 {({ isSubmitting, errors, status, touched }) => (

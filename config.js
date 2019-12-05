@@ -3,7 +3,7 @@ module.exports = {
     name: 'ChainSub',
     title: 'ChainSub',
     description: 'An All-in-One solution for Modern Publishing',
-    siteUrl: 'https://www.chainsub.space',
+    siteUrl: 'https://beta.chainsub.space',
     twitter: 'ChainSubSpace'
   },
 
