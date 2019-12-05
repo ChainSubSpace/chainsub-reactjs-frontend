@@ -49,9 +49,14 @@ export default () => {
         <div className="user_menu_wrapper">
           <div className="user_name">@{info.username}</div>
           <div className="balance">
-            <strong>BL:</strong>{' '}
-            {prettyPrintAmount(turtleBalance.unlockedBalance - turtleBalance.locked)}
+            <div>
+              <strong>AB:</strong> {prettyPrintAmount(turtleBalance.unlockedBalance)}
+            </div>
+            <div>
+              <strong>LB:</strong> {prettyPrintAmount(turtleBalance.lockedBalance)}
+            </div>
           </div>
+
           <ul>
             <li>
               <Link to="/user/article/create">New story</Link>

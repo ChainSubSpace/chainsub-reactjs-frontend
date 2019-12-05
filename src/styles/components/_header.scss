@@ -26,12 +26,18 @@
     margin-right: 20px;
     .balance {
       font-size: 1.4rem;
-      border-top: 1px solid $primary;
-      border-bottom: 1px solid $primary;
-      margin: 10px 0;
-      padding: 10px 0;
+      //border-bottom: 1px  solid $primary;
+
+      color: $turtle;
+      font-weight: bold;
+      //margin: 10px 0;
+      padding: 10px 5px;
       strong {
         color: $dark_color;
+      }
+
+      div:not(:first-child) {
+        margin-top:5px;
       }
     }
     .user_menu {

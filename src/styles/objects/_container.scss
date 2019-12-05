@@ -2,8 +2,47 @@
   height: 100%;
 }
 
+.page_item {
+  @include z-depth-1;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: $white;
+  position: relative;
+  border-left: 5px solid $primary;
+
+  text-align: left;
+  font-size: 1.6rem;
+
+  .title {
+    background: $primary;
+    color: $white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    width: unset;
+    text-transform: uppercase;
+    box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.12);
+
+    a {
+      color: $white;
+      padding: 0 5px;
+      @include underline(lighten($primary, 30%), darken($dark_color, 30%));
+    }
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+.page_item + .page_item {
+  margin-top: 20px;
+}
+
+
+
 .main {
-  transition: transform ease .5s;
+  //transition: transform ease .5s;
 
   .overlay {
     position: fixed;
@@ -14,7 +53,7 @@
     height: 0;
     opacity: 0;
     background-color: $light_black;
-    transition: opacity ease .5s, width linear .01s .5s, height linear .01s .5s;
+    //transition: opacity ease .5s, width linear .01s .5s, height linear .01s .5s;
   }
 
   .openable {
@@ -27,11 +66,11 @@
         width: 100%;
         height: 100%;
         opacity: .5;
-        transition: opacity ease .5s;
+        //transition: opacity ease .5s;
       }
 
       .openable {
-        transform: translateX(-$menuW);
+        //transform: translateX(-$menuW);
       }
     }
   }

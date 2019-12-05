@@ -1,25 +1,31 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-import {navigate} from 'gatsby'
+import { isEqual } from 'lodash-es'
+import { navigate } from 'gatsby'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 
-import {useMutation} from '@apollo/react-hooks'
-import {WITHDRAW} from '../../lib/backend-queries'
+import { useMutation } from '@apollo/react-hooks'
+import { WITHDRAW } from '../../lib/backend-queries'
 
 import QRCode from './QRCode'
 import { prettyPrintAmount } from '../../lib/helpers'
 
 export default ({ wallet, userBalance }) => {
+
+  const [withdraw] = useMutation(WITHDRAW)
+
   const [clipBoardNotification, showClipBoardNotification] = useState(false)
+
+  const isWithdraw = isEqual(wallet, userBalance)
+
+  const availableBalance = userBalance.unlockedBalance - userBalance.locked
+
+  const initialValues = isWithdraw ? { amount: '', to: '' } : { amount: 10 }
 
   const addressOnClickEvent = () => {
     navigator.clipboard.writeText(wallet.address)
     showClipBoardNotification(true)
   }
-
-  const [withdraw] = useMutation(WITHDRAW)
-
-  const availableBalance = userBalance.unlockedBalance - userBalance.locked
 
   return (
     <div className="wallet">
@@ -37,41 +43,53 @@ export default ({ wallet, userBalance }) => {
             <div className="withdraw">
               <div className="balance">
                 <strong>Available Balance:</strong> {prettyPrintAmount(availableBalance)}
-
               </div>
               <div className="balance">
                 <strong>Locked Balance:</strong> {prettyPrintAmount(userBalance.lockedBalance)}
-            </div>
+              </div>
 
               <Formik
-                initialValues={{ amount: 10 }}
-
+                initialValues={initialValues}
                 validate={values => {
                   const errors = {}
 
-
-                  if (availableBalance === 0) {errors.amount = 'Your balance is empty'}
+                  if (availableBalance === 0) {
+                    errors.amount = 'Your balance is empty'
+                  }
                   if (!values.amount) {
                     errors.amount = 'Required'
                   }
 
-                  if (values.amount > (availableBalance / 100 - 0.1)) {
-                    errors.amount = `Max value is ${prettyPrintAmount((availableBalance - 10))}`
+                  if (isWithdraw) {
+                    if (!values.to) {
+                      errors.to = 'Required'
+                    }
+                    if (values.to.length !== 99) {
+                      errors.to = 'Address length should be 99 characters'
+                    }
+                  }
+
+                  if (values.amount > availableBalance / 100 - 0.1) {
+                    errors.amount = `Max value is ${prettyPrintAmount(availableBalance - 10)}`
                   }
 
                   return errors
                 }}
-                onSubmit={async (values, { setSubmitting , setStatus }) => {
+                onSubmit={async (values, { setSubmitting, setStatus }) => {
                   setSubmitting(true)
+                  const to = values.to ? values.to : wallet.address
 
-                  const request = {to: wallet.address, amount: values.amount * 100}
+                  const request = { to, amount: values.amount * 100 }
+
+                  if (wallet.articleSlug && isWithdraw) request.from = wallet.articleSlug
+
+                  console.log(request)
 
                   try {
                     await withdraw({ variables: request })
                   } catch (error) {
                     setStatus('Identifier or password invalid.')
                   }
-
                 }}
               >
                 {({ isSubmitting, errors, status, touched }) => (
@@ -79,36 +97,53 @@ export default ({ wallet, userBalance }) => {
                     <div>{isSubmitting}</div>
                     <div className={cn('status', { error: status })}>{status}</div>
                     <ul>
+                      {isWithdraw && (
+                        <li>
+                          <ErrorMessage className="error" name="to" component="div" />
+                          <Field
+                            className={cn('field-style field-full align-none', {
+                              error: errors.to && touched.to
+                            })}
+                            type="text"
+                            name="to"
+                            placeholder="Withdraw address"
+                            autoComplete="off"
+                          />
+                        </li>
+                      )}
                       <li>
                         <ErrorMessage className="error" name="amount" component="div" />
                         <Field
-                          className={cn('field-style field-full align-none', {
+                          className={cn('field-style field-split align-none', {
                             error: errors.amount && touched.amount
                           })}
                           type="number"
                           name="amount"
-                          // min="1"
-                          // max="15"
-                          placeholder="Amount to donate"
+                          placeholder="Amount"
                           autoComplete="off"
                         />
                       </li>
                     </ul>
                     <div>
                       <button className="btn small" type="submit" disabled={isSubmitting}>
-                        <div className="button__content">Donate</div>
+                        <div className="button__content">{isWithdraw ? 'Withdraw' : 'Donate'}</div>
+                      </button>
+                      <button className="btn small" type="button">
+                        <div className="button__content">History</div>
                       </button>
                     </div>
                   </Form>
                 )}
               </Formik>
             </div>
-          ): (
-            <div style={{margin:'10px 0'}}>
-              <div style={{marginBottom:'10px'}}>Please <strong>Sign in</strong> to donate from your personal account.</div>
-            <button className="btn small" type="button" onClick={() => navigate('/auth/signin')}>
-              <div className="button__content">Sign in</div>
-            </button>
+          ) : (
+            <div style={{ margin: '10px 0' }}>
+              <div style={{ marginBottom: '10px' }}>
+                Please <strong>Sign in</strong> to donate from your personal account.
+              </div>
+              <button className="btn small" type="button" onClick={() => navigate('/auth/signin')}>
+                <div className="button__content">Sign in</div>
+              </button>
             </div>
           )}
         </div>
