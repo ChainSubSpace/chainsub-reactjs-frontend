@@ -65,7 +65,7 @@ export default () => {
               <Link to="/user/articles">Stories</Link>
             </li>
             <li>
-              <a href="/">Stats</a>
+              <Link to="/user/stats">Stats</Link>
             </li>
           </ul>
 
@@ -80,10 +80,10 @@ export default () => {
 
           <ul>
             <li>
-              <a href="/">Profile</a>
+              <Link to="/user/profile">Profile</Link>
             </li>
             <li>
-              <a href="/">Settings</a>
+              <Link to="/user/settings">Settings</Link>
             </li>
             <li>
               <a onClick={signOut} href="/">

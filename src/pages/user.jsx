@@ -18,6 +18,8 @@ import ArticleTransactionsHistory
 import UserTransactionsHistory from '../components/TransactionsHistory/UserTransactionsHistory'
 import Wallets from '../components/common/Wallets'
 
+import WIP from '../components/common/WIP'
+
 // The slate is crashing on SSR so...
 const EditPost = (ssr) ? null : require('../components/common/EditPost').default
 const CreatePost = (ssr) ? null : require('../components/common/CreatePost').default
@@ -48,6 +50,9 @@ export default () => {
             <Wallets user={user} path="/user/wallets" />
             <ArticleTransactionsHistory path="/user/article/wallet/history/:slug" />
             <UserTransactionsHistory user={user} path="/user/main/wallet" />
+            <WIP  path="/user/stats" />
+            <WIP  path="/user/profile" />
+            <WIP  path="/user/settings" />
           </Router>
         </Layout>
       )}
