@@ -16,8 +16,6 @@ export const GET_CURRENT_USER = gql`
   }
 `
 
-
-
 export const LOGIN = gql`
   mutation($identifier: String!, $password: String!) {
     login(input: { identifier: $identifier, password: $password }) {
@@ -119,6 +117,35 @@ export const GET_POST = gql`
   ${POST_DETAILS_FRAGMENT}
 `
 
+export const GET_TRANSACTIONS = gql`
+  query(
+    $type: TransactionType!
+    $owner: Owner!
+    $ownerId: String
+    $start: Int!
+    $limit: Int!
+  ) {
+    transactions(
+      type: $type
+      owner: $owner
+      ownerId: $ownerId
+      start: $start
+      limit: $limit
+    ) {
+      total
+      transactions {
+        blockHeight
+        hash
+        paymentID
+        fee
+        amount
+        createdAt
+        id
+      }
+    }
+  }
+`
+
 export const GET_POST_BY_SLUG = gql`
   query($slug: String!) {
     postData: postDataBySlug(slug: $slug) {
@@ -129,17 +156,6 @@ export const GET_POST_BY_SLUG = gql`
         lockedBalance
         totalReceived
         totalSent
-      }
-      transactions {
-        in {
-          blockHeight
-          hash
-          paymentID
-          fee
-          amount
-          createdAt
-          id
-        }
       }
       post {
         content
@@ -245,15 +261,15 @@ export const GET_WALLETS = gql`
 `
 
 export const WITHDRAW = gql`
-    mutation($amount: Int!, $to: String! $from: String) {
-        withdraw(amount: $amount, to: $to, from: $from) {
-            status
-            wallet {
-                ...WalletDitails
-            }
-        }
+  mutation($amount: Int!, $to: String!, $from: String) {
+    withdraw(amount: $amount, to: $to, from: $from) {
+      status
+      wallet {
+        ...WalletDitails
+      }
     }
-    ${WALLET_FRAGMENT}
+  }
+  ${WALLET_FRAGMENT}
 `
 
 export const GET_BALANCE = gql`

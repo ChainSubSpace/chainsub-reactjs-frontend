@@ -29,11 +29,19 @@ $light_black: #253032;
 $grey: #babdb5;
 $lightgrey: #f4f4f4;
 
-$primary: #ff9900;
-$secondary: lighten(#ff9900,40%);
-$dark_color: darken(#ff9900,38%);;
+$base: #ff9900;
+$base: #d65076;
+$primary: $base;
+$secondary: lighten($base,40%);
+$dark_color: darken($base,38%);
 
 $negative: #de5f5f;
 $positive: #82f5b6;
 
 $turtle: #00853d;
+
+:root {
+  --primary: $base;
+  --secondary: lighten($base,40%);;
+  --dark: darken($base,38%);;
+}

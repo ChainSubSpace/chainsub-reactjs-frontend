@@ -12,6 +12,10 @@ import { ssr } from '../lib/helpers'
 import Layout from '../components/Layout'
 import PostsByAuthor from '../components/PostsList/PostsByAuthor'
 
+import ArticleTransactionsHistory
+  from '../components/TransactionsHistory/ArticleTransactionsHistory'
+
+import UserTransactionsHistory from '../components/TransactionsHistory/UserTransactionsHistory'
 import Wallets from '../components/common/Wallets'
 
 // The slate is crashing on SSR so...
@@ -42,6 +46,8 @@ export default () => {
             <CreatePost user={user} path="/user/article/create" />
             <EditPost user={user} path="/user/article/edit/:id" />
             <Wallets user={user} path="/user/wallets" />
+            <ArticleTransactionsHistory path="/user/article/wallet/history/:slug" />
+            <UserTransactionsHistory user={user} path="/user/main/wallet" />
           </Router>
         </Layout>
       )}

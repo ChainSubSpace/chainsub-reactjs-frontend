@@ -17,11 +17,14 @@ export default ({ posts, total, onLoadMore, networkStatus }) => {
   return (
     <Fragment>
       {itemsList}
-      <button className="btn small" type="button" onClick={() => onLoadMore()}>
-        {posts.length < total && (
-          <div className="button__content">{networkStatus < 7 ? 'Loading' : 'Load More'}</div>
-        )}
-      </button>
+
+      {posts.length < total && (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <button className="btn small" type="button" onClick={() => onLoadMore()}>
+            <div className="button__content">{networkStatus < 7 ? 'Loading' : 'Load More'}</div>
+          </button>
+        </div>
+      )}
     </Fragment>
   )
 }

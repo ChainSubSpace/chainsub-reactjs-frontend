@@ -10,7 +10,7 @@ import { WITHDRAW } from '../../lib/backend-queries'
 import QRCode from './QRCode'
 import { prettyPrintAmount } from '../../lib/helpers'
 
-export default ({ wallet, userBalance }) => {
+export default ({ wallet, userBalance, postSlug }) => {
   const [withdraw] = useMutation(WITHDRAW)
 
   const [clipBoardNotification, showClipBoardNotification] = useState(false)
@@ -20,6 +20,10 @@ export default ({ wallet, userBalance }) => {
   const availableBalance = userBalance.unlockedBalance - userBalance.locked
 
   const initialValues = isWithdraw ? { amount: '', to: '' } : { amount: 10 }
+
+  const historyPath = postSlug
+    ? `/user/article/wallet/history/${postSlug}`
+    : '/user/main/wallet'
 
   const addressOnClickEvent = () => {
     navigator.clipboard.writeText(wallet.address)
@@ -32,7 +36,9 @@ export default ({ wallet, userBalance }) => {
       <strong>deposit</strong> funds into this wallet.
     </Fragment>
   ) : (
-    <Fragment>To support the author, you can <strong>deposit TRTL</strong> directly to this address.</Fragment>
+    <Fragment>
+      To support the author, you can <strong>deposit TRTL</strong> directly to this address.
+    </Fragment>
   )
 
   return (
@@ -139,7 +145,11 @@ export default ({ wallet, userBalance }) => {
                       <button className="btn small" type="submit" disabled={isSubmitting}>
                         <div className="button__content">{isWithdraw ? 'Withdraw' : 'Donate'}</div>
                       </button>
-                      <button className="btn small" type="button">
+                      <button
+                        onClick={() => navigate(historyPath)}
+                        className="btn small"
+                        type="button"
+                      >
                         <div className="button__content">History</div>
                       </button>
                     </div>

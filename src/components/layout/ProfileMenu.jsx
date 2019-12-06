@@ -71,10 +71,10 @@ export default () => {
 
           <ul>
             <li>
-              <Link to="/user/wallets">wallets</Link>
+              <Link to="/user/wallets">Wallets</Link>
             </li>
             <li>
-              <a href="/">History</a>
+              <Link to="/user/main/wallet">History</Link>
             </li>
           </ul>
 

@@ -2,14 +2,16 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { get } from 'lodash-es'
 
-import { useLazyQuery, useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { GET_BALANCE, GET_POST_BY_SLUG } from '../../lib/backend-queries'
 
 import Post from './Post'
 import PostInfo from './PostInfo'
 import Markdown from './Markdown'
 import Wallet from '../wallet/Wallet'
-import TransactionItem from '../wallet/TransactionItem'
+
+import InTransactions from '../TransactionsHistory/InTransactions'
+import OutTransactions from '../TransactionsHistory/OutTransactions'
 
 export default ({ slug }) => {
   const { data, networkStatus } = useQuery(GET_POST_BY_SLUG, {
@@ -27,7 +29,6 @@ export default ({ slug }) => {
   const turtleBalance = get(balance, 'data.balance.turtle', { unlockedBalance: 0 })
 
   const post = get(data, 'postData.post', null)
-  const inTransactions = get(data, 'postData.transactions.in', null)
   const wallet = get(data, 'postData.wallet', null)
 
   if (networkStatus < 7 && !post) return null
@@ -45,17 +46,11 @@ export default ({ slug }) => {
         <div className="page_item">
           <div className="title">Article's TRTL wallet:</div>
           <div className="content">
-            <Wallet wallet={wallet} userBalance={turtleBalance} />
+            <Wallet wallet={wallet} userBalance={turtleBalance} postSlug={post.slug} />
           </div>
         </div>
-        <div className="page_item">
-          <div className="title">
-            Incoming Turtle transactions: [{inTransactions.length}]
-          </div>
-          {inTransactions.map(transaction => (
-            <TransactionItem key={transaction.id} transaction={transaction} />
-          ))}
-        </div>
+          <InTransactions slug={post.slug} />
+          <OutTransactions slug={post.slug} />
       </section>
     </div>
   )

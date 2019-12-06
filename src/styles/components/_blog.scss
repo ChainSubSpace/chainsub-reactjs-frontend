@@ -66,7 +66,7 @@
 
 .block_header {
   //font-family: 'Roboto Slab', Courier, serif;
-  background: $primary;
+  background: var(--primary);
   color: $white;
   padding: 10px;
   font-size: 14px;
@@ -102,6 +102,7 @@
   .post__tools {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
   }
 
   h1 {
@@ -137,55 +138,39 @@
     top: 0;
   }
 
-  .blog__post_item {
-    @include z-depth-1;
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: $white;
-    position: relative;
-    border-left: 5px solid $primary;
-    margin-bottom: 20px;
-    text-align: left;
-    padding-bottom: 20px;
-    font-size: 1.6rem;
+  .article_list_item {
+
+
 
     .blog__post_title {
+      a {
       font-family: 'Roboto Slab', Courier, serif;
-      font-size: 2rem;
-      margin-top: 20px;
-      margin-left: 20px;
+      }
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+
     }
     .post_info .post_info__meta {
       margin-left: 0;
     }
   }
 
-  .blog__content {
-    @include z-depth-1;
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: $white;
-    position: relative;
-    border-left: 5px solid $primary;
-    font-size: 1.6em;
 
 
-  }
-
-  .blog__content + .blog__content {
-    margin-top: 20px;
-  }
 
   .blog__title_image_caption {
     margin-top: 5px;
   }
 
+  .post_info + .post_info {
+    margin-top: 20px;
+  }
   .post_info {
     text-align: left;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-top: 20px;
+    //padding-left: 20px;
+    //padding-right: 20px;
+    //padding-bottom: 10px;
+    //padding-top: 20px;
 
     * {
       font-family: 'Roboto Slab', Courier, serif;

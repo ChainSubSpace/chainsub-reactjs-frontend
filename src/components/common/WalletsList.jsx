@@ -1,9 +1,8 @@
 import React from 'react'
 
-import WalletsListItem from './WalletsListItem'
+import { Link } from 'gatsby'
 
 import Wallet from '../wallet/Wallet'
-import { Link } from 'gatsby'
 
 export default ({ articlesWalletsTurtle, mainWalletTurtle }) => {
   return (
@@ -22,7 +21,7 @@ export default ({ articlesWalletsTurtle, mainWalletTurtle }) => {
             <Link to={`/blog/${wallet.articleSlug}`}>{wallet.articleTitle}:</Link>
           </div>
           <div className="content">
-            <Wallet key={wallet.id} wallet={wallet} userBalance={wallet} type="article" />
+            <Wallet key={wallet.id} wallet={wallet} userBalance={wallet} postSlug={wallet.articleSlug} type="article" />
           </div>
         </div>
       ))}
