@@ -8,6 +8,8 @@ import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 
 import { ApolloProvider } from '@apollo/react-hooks'
 
+import { createUploadLink } from 'apollo-upload-client'
+
 import {
   InMemoryCache,
   defaultDataIdFromObject,
@@ -57,7 +59,12 @@ const cache = new InMemoryCache({
 
 persistCache({ cache, storage: window.localStorage })
 
-const httpLink = createHttpLink({
+// const httpLink = createHttpLink({
+//   // uri: 'http://178.47.142.217:1337/graphql',
+//   uri: 'https://backend.chainsub.space/gql',
+//   fetch
+// })
+const httpLink = createUploadLink({
   // uri: 'http://178.47.142.217:1337/graphql',
   uri: 'https://backend.chainsub.space/gql',
   fetch
@@ -69,12 +76,14 @@ const authLink = setContext((_, { headers }) => {
   return { headers: { ...headers, authorization: token ? `Bearer ${token}` : '' } }
 })
 
-const mylink = createPersistedQueryLink({ useGETForHashedQueries: true }).concat(
-  authLink.concat(httpLink)
-)
+// const mylink = createPersistedQueryLink({ useGETForHashedQueries: true }).concat(
+//   authLink.concat(httpLink)
+// )
+
+const persistedQueryLink = createPersistedQueryLink().concat(authLink.concat(httpLink))
+
 const client = new ApolloClient({
-  link: mylink,
-  // link: authLink.concat(httpLink),
+  link: persistedQueryLink,
   cache,
   resolvers: {
     Query: { user: async user => null },

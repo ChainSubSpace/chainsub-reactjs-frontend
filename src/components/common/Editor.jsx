@@ -1,19 +1,23 @@
 import Editor, { theme } from 'rich-markdown-editor'
 import React from 'react'
 
+import { useMutation } from '@apollo/react-hooks'
+import { UPLOAD } from '../../lib/backend-queries'
+
 const hiddenToolbarButtons = {
   blocks: ['block-quote'],
   marks: ['deleted', 'block-quote']
 }
 
 theme.blockToolbarBackground = '#073B4C'
-theme.blockToolbarItem = '#ff5646'
+theme.blockToolbarItem = 'white'
 theme.blockToolbarTrigger = '#ff5646'
 theme.blockToolbarTriggerIcon = 'white'
 theme.placeholder = '#757575'
 export default ({ article, validateArticle }) => {
+  const [upload] = useMutation(UPLOAD)
 
-  const handleChange = value => validateArticle({content: value()})
+  const handleChange = value => validateArticle({ content: value() })
 
   return (
     <Editor
@@ -24,8 +28,12 @@ export default ({ article, validateArticle }) => {
       onChange={handleChange}
       theme={{ hiddenToolbarButtons, ...theme }}
       uploadImage={async file => {
-        const result = await s3.upload(file)
-        return result.url
+        console.log(file)
+        const data = await upload({ variables: { file } })
+        console.log(data)
+        // const result = await s3.upload(file)
+        console.log(data.data.upload.url)
+        return `https://backend.chainsub.space${data.data.upload.url}`
       }}
     />
   )

@@ -83,21 +83,11 @@
   padding: 0 0 50px;
   position: relative;
   min-height: $pageH;
+  //min-height: calc((100vh - 215px) - 55px);
   text-align: center;
   overflow-wrap: break-word;
 
-  div[class^='BlockToolbar__Bar-'] * {
-    box-sizing: unset;
-    max-width: unset;
-  }
 
-  div[class^='BlockToolbar__Bar-']::before {
-    width: unset;
-  }
-
-  div[class^='BlockToolbar__Bar-']::after {
-    width: unset;
-  }
 
   .post__tools {
     display: flex;
@@ -361,6 +351,7 @@
   }
 
   @include mq($min-width: $vw-small) {
-    min-height: $mobilePageH;
+    //min-height: $mobilePageH;
+    min-height: calc((100vh - 215px) - 55px);
   }
 }

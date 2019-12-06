@@ -85,10 +85,10 @@
 }
 
 .page {
-  min-height: 100vh;
+  min-height: calc((100vh - 215px) - 55px);
   padding-top: $headerH;
   @include mq($max-width: $vw-small) {
-    padding-top: $mobileHeaderH;
+    //padding-top: $mobileHeaderH;
   }
 }
 

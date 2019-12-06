@@ -1,0 +1,78 @@
+div[class^='Toolbar__Menu']  {
+   background: $dark_color;
+   border-radius: 20px;
+ }
+div[class^='Toolbar__Menu']::before  {
+  background: $dark_color;
+
+}
+
+div[class^='BlockInsert__Trigger']  {
+  //background: $dark_color!important;
+  margin-left: -15px;
+
+  border-radius: 20px;
+}
+
+.chainsub_editor {
+  font-size: unset;
+
+  div[class^='BlockToolbar__Bar-'] * {
+    box-sizing: unset;
+    max-width: unset;
+  }
+
+  div[class^='BlockToolbar__Bar-']  {
+    background: $primary;
+    border-radius: 20px;
+  }
+
+  div[class^='BlockToolbar__Bar-']::before {
+    width: unset;
+  }
+
+  div[class^='BlockToolbar__Bar-']::after {
+    width: unset;
+  }
+
+  ol,
+  ul {
+    padding: unset;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    font-size: 16px;
+    line-height: 2.5rem;
+    word-break: break-all;
+  }
+
+  li {
+    display: table;
+  }
+
+  ol > li:before,
+  ul > li:before {
+    display: table-cell;
+    content: '\E315';
+    color: $primary;
+    margin-right: 5px;
+    font-family: 'fontello' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  }
+
+  blockquote {
+    font-size: 16px !important;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    border-left: 5px solid $dark_color !important;
+    padding-left: 10px !important;
+    padding-right: 20px;
+    background-color: $lightgrey;
+    color: $black;
+    font-style: italic!important;
+  }
+}

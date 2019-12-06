@@ -14,6 +14,7 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "apollo-link-persisted-queries": "^0.2.2",
+    "apollo-upload-client": "^12.1.0",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "formik": "^2.0.6",
@@ -48,7 +49,8 @@
     "react-helmet": "^5.2.1",
     "react-instantsearch-dom": "6.0.0",
     "react-markdown": "^4.2.2",
-    "rich-markdown-editor": "^9.10.0",
+    "rich-markdown-editor": "^9.10.1-0",
+    "slate-md-serializer": "^5.4.4",
     "turtlecoin-wallet-backend": "^4.0.9",
     "yup": "^0.27.0"
   },

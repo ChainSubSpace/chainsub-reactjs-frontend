@@ -118,20 +118,8 @@ export const GET_POST = gql`
 `
 
 export const GET_TRANSACTIONS = gql`
-  query(
-    $type: TransactionType!
-    $owner: Owner!
-    $ownerId: String
-    $start: Int!
-    $limit: Int!
-  ) {
-    transactions(
-      type: $type
-      owner: $owner
-      ownerId: $ownerId
-      start: $start
-      limit: $limit
-    ) {
+  query($type: TransactionType!, $owner: Owner!, $ownerId: String, $start: Int!, $limit: Int!) {
+    transactions(type: $type, owner: $owner, ownerId: $ownerId, start: $start, limit: $limit) {
       total
       transactions {
         blockHeight
@@ -270,6 +258,20 @@ export const WITHDRAW = gql`
     }
   }
   ${WALLET_FRAGMENT}
+`
+export const UPLOAD = gql`
+  mutation($file: Upload!) {
+    upload(file: $file) {
+      name
+      hash
+      sha256
+      ext
+      mime
+      size
+      url
+      id
+    }
+  }
 `
 
 export const GET_BALANCE = gql`
