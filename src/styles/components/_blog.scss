@@ -112,11 +112,7 @@
     margin-left: -20px;
   }
 
-  h2 {
-    font-size: 2.4rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+
 
   &:before {
     content: '';
@@ -255,68 +251,11 @@
     letter-spacing: 0.05em;
     padding-bottom: 10px;
 
-    p {
-      line-height: 1.8em;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      font-size: unset;
-    }
 
-    //> p:first-of-type::first-letter {
-    //  color: $orange;
-    //  font-weight: bold;
-    //  font-size: 40px;
-    //  margin-right: 5px;
-    //}
 
-    blockquote {
-      margin-inline-start: 10px;
-      margin-inline-end: 10px;
-      border-left: 5px solid $secondary;
-      padding-left: 20px;
-      padding-right: 20px;
-      background-color: $lightgrey;
-      color: $black;
-      font-style: italic;
-    }
 
-    h2 {
-      margin-left: 20px;
-      .anchor svg {
-        visibility: visible;
-      }
-    }
-    a {
-      text-decoration: underline;
-    }
 
-    ol,
-    ul {
-      margin-block-start: 10px;
-      margin-block-end: 10px;
 
-      line-height: 2.5rem;
-      word-break: break-all;
-    }
-
-    li {
-      display: table;
-    }
-
-    ol > li:before,
-    ul > li:before {
-      display: table-cell;
-      content: '\E315';
-      color: $primary;
-      margin-right: 5px;
-      font-family: 'fontello' !important;
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-    }
   }
 
   @include mq($min-width: $vw-medium) {

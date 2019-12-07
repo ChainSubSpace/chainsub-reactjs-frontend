@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import cn from 'classnames'
 
 import { get } from 'lodash-es'
@@ -6,8 +6,8 @@ import { get } from 'lodash-es'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
-import { useQuery } from '@apollo/react-hooks'
-import { GET_CATEGORY_BY_SLUG } from '../../lib/backend-queries'
+import { useMutation, useQuery } from '@apollo/react-hooks'
+import { GET_CATEGORY_BY_SLUG, UPLOAD } from '../../lib/backend-queries'
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -20,25 +20,45 @@ const validationSchema = Yup.object().shape({
 export default ({ article, validateArticle }) => {
   const categories = useQuery(GET_CATEGORY_BY_SLUG)
 
+  const [upload] = useMutation(UPLOAD)
+
+  const heroUploadButton = useRef()
+
+
+  const [heroImage, setHeroImage] = useState((article.heroImage) ? `https://backend.chainsub.space${article.heroImage}` : null)
+
   return (
     <div>
       <Formik
-        initialValues={{ title: article.title, category: article.category }}
+        initialValues={{ title: article.title, category: article.category, heroImage: '' }}
         validationSchema={validationSchema}
         validateOnChange={true}
         validate={async values => {
-          validateArticle(values)
+          const formObject = values
+          const file = formObject.heroImage
+
+          const data = await upload({ variables: { file } })
+
+          setHeroImage(`https://backend.chainsub.space${data.data.upload.url}`)
+
+          formObject.heroImage = data.data.upload.url
+
+          validateArticle(formObject)
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
-          try {
-            // await login({ variables: values })
-          } catch (error) {
-            // setStatus('Identifier or password invalid.')
-          }
           setSubmitting(false)
         }}
       >
-        {({ isSubmitting, errors, status, touched, values, handleChange, handleBlur }) => (
+        {({
+          isSubmitting,
+          errors,
+          status,
+          touched,
+          setFieldValue,
+          values,
+          handleChange,
+          handleBlur
+        }) => (
           <Form className="form article_form">
             <div className={cn('status', { error: status })}>{status}</div>
             <ul>
@@ -76,6 +96,31 @@ export default ({ article, validateArticle }) => {
                 </Field>
               </li>
             </ul>
+            {(article.title) && (
+              <button
+                className="btn small"
+                type="button"
+                onClick={() => heroUploadButton.current.click()}
+                disabled={isSubmitting}
+              >
+                <div className="button__content">Add header image</div>
+              </button>
+            )}
+
+            <input
+              style={{display: 'none'}}
+              ref={heroUploadButton}
+              id="file"
+              name="heroImage"
+              type="file"
+              onChange={async event => setFieldValue('heroImage', event.currentTarget.files[0])}
+            />
+
+            {heroImage && (
+              <div style={{ margin: '10px 0' }}>
+                <img alt="Hero" src={heroImage} />
+              </div>
+            )}
           </Form>
         )}
       </Formik>

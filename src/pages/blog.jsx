@@ -12,11 +12,11 @@ const App = () => (
   <Location>
     {({ location }) => (
       <Layout location={location}>
-        <Router location={location} className="router">
+        <Router location={location} className="router" >
           <PostsByAuthor path="/blog/author/:slug" />
           <PostsByCategory path="/blog/category/:slug" />
           <PostsByTag path="/blog/tag/:slug" />
-          <Post path="blog/:slug" />
+          <Post path="blog/:slug" location={location} />
         </Router>
       </Layout>
     )}

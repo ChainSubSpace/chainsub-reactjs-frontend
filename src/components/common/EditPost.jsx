@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { get, isEqual } from 'lodash-es'
 
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import { UPDATE_POST, GET_POST } from '../../lib/backend-queries'
+import {UPDATE_POST, GET_POST } from '../../lib/backend-queries'
 
 import { useInterval } from '../../lib/helpers'
 
@@ -18,7 +18,8 @@ const editorInitialState = {
     id: null,
     title: null,
     content: null,
-    category: null
+    category: null,
+    heroImage: null
   },
   dataIsReady: false,
   onChangeIntervalInMs: null,
@@ -59,6 +60,7 @@ function editorReducer(state, action) {
 
 export default ({ id }) => {
   const [updatePost] = useMutation(UPDATE_POST)
+
   const [editorState, execute] = useReducer(editorReducer, editorInitialState)
 
   useInterval(async () => {
@@ -90,7 +92,8 @@ export default ({ id }) => {
             id: post.id,
             title: post.title,
             category: post.category.id,
-            content: post.content
+            content: post.content,
+            heroImage: post.heroImage
           }
         })
     }
@@ -126,12 +129,8 @@ export default ({ id }) => {
         <Markdown markdown={`# ${editorState.article.title}`} />
         <div className="page_item">
           <EditorForm article={editorState.article} validateArticle={validateArticle} />
-
-
-
-
         </div>
-        <div className="page_item chainsub_editor">
+        <div className="page_item editor chainsub_editor">
 
             <div className={cn('title', { error: editorState.statusMessage })}>
               {editorState.statusMessage}

@@ -37,9 +37,93 @@ div[class^='BlockInsert__Trigger']  {
 
   ol,
   ul {
-    padding: unset;
-    margin-block-start: 10px;
-    margin-block-end: 10px;
+    margin:0!important;
+    padding: 0!important;
+    p {
+      line-height: unset;
+      margin:0!important;
+      padding: 0!important;
+    }
+  }
+}
+
+.blog__post {
+  margin-top:20px;
+  p {
+    font-size: unset;
+    //margin-block-start:0;
+    //margin-block-end:0;
+    //margin-top:0;
+    //margin-bottom:0;
+  }
+
+  h2, h3 {
+    //margin-block-start:0;
+    //margin-block-end:0;
+    //margin-top:0;
+    //margin-bottom:0;
+
+  }
+}
+.editor, .chainsub_editor {
+  .codeBlock {
+    background-color: $secondary;
+    border: 5px solid $dark_color;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  code * {
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+  }
+
+  p, li {
+    strong {
+      background-color: $secondary;
+      color: $primary;
+    }
+    a {
+      color: $primary;
+      padding: 0 5px;
+      @include underline(lighten($primary, 30%), darken($dark_color, 30%));
+    }
+  }
+
+  p, h2,h3,ol,ul, blockquote{
+    margin-top:10px !important;
+    margin-block-start:10px !important;
+  }
+  p {
+    line-height: 1.8em;
+    letter-spacing: .05em;
+    padding: 0 0;
+  }
+  h2, h3 {
+    font-family: 'Roboto Slab', Courier, serif;
+    line-height: 2.2rem;
+    .anchor svg {
+      margin-left:20px;
+      visibility: visible;
+      font-weight: bold;
+    }
+    span {
+      font-family: 'Roboto Slab', Courier, serif;
+      font-weight: bold;
+    }
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+  h3 {
+    font-size: 2.4rem;
+  }
+
+  ol,
+  ul {
+    padding: 0;
+    //margin-block-start: 0;
+    margin-block-end: 0;
     font-size: 16px;
     line-height: 2.5rem;
     word-break: break-all;
@@ -55,6 +139,7 @@ div[class^='BlockInsert__Trigger']  {
     content: '\E315';
     color: $primary;
     margin-right: 5px;
+    font-size: 20px;
     font-family: 'fontello' !important;
     speak: none;
     font-style: normal;
@@ -66,8 +151,10 @@ div[class^='BlockInsert__Trigger']  {
 
   blockquote {
     font-size: 16px !important;
-    margin-inline-start: 10px;
-    margin-inline-end: 10px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin-block-start:0;
+    margin-block-end:0;
     border-left: 5px solid $dark_color !important;
     padding-left: 10px !important;
     padding-right: 20px;

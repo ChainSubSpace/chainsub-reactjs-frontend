@@ -23,7 +23,7 @@ export default ({ article, validateArticle }) => {
     <Editor
       readOnly={false}
       defaultValue={article.content}
-      headingsOffset={1}
+      // headingsOffset={1}
       className="article__editor"
       onChange={handleChange}
       theme={{ hiddenToolbarButtons, ...theme }}

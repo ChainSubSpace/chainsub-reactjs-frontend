@@ -1,15 +1,51 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import GithubSlugger from 'github-slugger'
+
+// import { createBrowserHistory } from 'history'
+
+import Prism from './Prism'
+
+// const history = createBrowserHistory()
+
+function CustomImg(props) {
+  return (
+    <span  style={{ display: 'block', textAlign: 'center', margin:'20px 0' }}>
+      <img alt="uploaded" src={props.src} />
+    </span>
+  )
+}
+
+function CustomCode({value: code}) {
+  const html = Prism.highlight(code, Prism.languages.jsx, 'jsx')
+
+  return <div className="codeBlock"><code className='language-js' dangerouslySetInnerHTML={{__html: html}} /></div>
+  return <div>1</div>
+}
 
 function CustomHeading(props) {
-
   const { value } = props.children[0].props
   const CustomTag = `h${props.level}`
+  const slugger = new GithubSlugger()
 
-  if (props.level === 2) {
+  const slug = slugger.slug(value)
+
+  const hashPath = `${window.location.pathname}#${slug}`
+
+  if (props.level >= 2) {
     return (
-      <CustomTag id={value}>
-        <a href={`#${value}`} className="anchor">
+      <CustomTag id={slug}>
+        <a
+          onClick={e => {
+            e.preventDefault()
+            // history.push(hashPath)
+            window.history.pushState('', '', hashPath)
+            const element = document.getElementById(slug)
+            if (element) element.scrollIntoView()
+          }}
+          href="/"
+          className="anchor"
+        >
           <svg
             aria-hidden="true"
             focusable="false"
@@ -33,5 +69,9 @@ function CustomHeading(props) {
 }
 
 export default ({ markdown }) => (
-  <ReactMarkdown source={markdown} escapeHtml={true} renderers={{ heading: CustomHeading }} />
+  <ReactMarkdown
+    source={markdown}
+    escapeHtml={true}
+    renderers={{ heading: CustomHeading, image: CustomImg, code: CustomCode }}
+  />
 )

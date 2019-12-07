@@ -26,7 +26,7 @@ export default ({ user, post }) =>
   useMemo(
     () => (
       <div className="page_item article_list_item" key={post.id}>
-        <a href="/">Hero Image</a>
+        {post.heroImage && (<img alt="Title" src={`https://backend.chainsub.space${post.heroImage}`} />)}
         <div className="content">
           <div className="blog__post_title">
             <Link rel="prefetch" to={`/blog/${post.slug}`}>

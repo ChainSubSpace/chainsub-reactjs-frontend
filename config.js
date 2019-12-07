@@ -13,7 +13,7 @@ module.exports = {
   },
 
   disqus: {
-    shortname: 'catalyst-coin'
+    shortname: 'chainsub'
   },
 
   algolia: {

@@ -58,6 +58,7 @@ const POST_DETAILS_FRAGMENT = gql`
     views
     createdAt
     updatedAt
+    heroImage
     author {
       id
       username
@@ -91,11 +92,17 @@ export const CREATE_POST = gql`
   ${POST_DETAILS_FRAGMENT}
 `
 export const UPDATE_POST = gql`
-  mutation($id: ID!, $title: String!, $category: ID!, $content: String!) {
+  mutation($id: ID!, $title: String!, $category: ID!, $content: String!, $heroImage: String) {
     response: updatePost(
       input: {
         where: { id: $id }
-        data: { title: $title, category: $category, content: $content, draft: true }
+        data: {
+          heroImage: $heroImage
+          title: $title
+          category: $category
+          content: $content
+          draft: true
+        }
       }
     ) {
       post {
