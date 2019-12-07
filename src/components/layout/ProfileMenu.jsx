@@ -40,9 +40,10 @@ export default () => {
     navigate('/')
   }
 
+  const switchMenu = () => setShowMenu(!showMenu)
   return (
     <div className="profile__menu">
-      <span className="user_icon" onClick={() => setShowMenu(!showMenu)}>
+      <span className="user_icon" onClick={switchMenu}>
         {info.username.charAt(0).toUpperCase()}
       </span>
       <div className="user_menu" style={{ height: showMenu ? '440px' : '0px' }}>
@@ -59,31 +60,31 @@ export default () => {
 
           <ul>
             <li>
-              <Link to="/user/article/create">New story</Link>
+              <Link onClick={switchMenu} to="/user/article/create">New story</Link>
             </li>
             <li>
-              <Link to="/user/articles">Stories</Link>
+              <Link onClick={switchMenu} to="/user/articles">Stories</Link>
             </li>
             <li>
-              <Link to="/user/stats">Stats</Link>
-            </li>
-          </ul>
-
-          <ul>
-            <li>
-              <Link to="/user/wallets">Wallets</Link>
-            </li>
-            <li>
-              <Link to="/user/main/wallet">History</Link>
+              <Link onClick={switchMenu} to="/user/stats">Stats</Link>
             </li>
           </ul>
 
           <ul>
             <li>
-              <Link to="/user/profile">Profile</Link>
+              <Link onClick={switchMenu} to="/user/wallets">Wallets</Link>
             </li>
             <li>
-              <Link to="/user/settings">Settings</Link>
+              <Link onClick={switchMenu} to="/user/main/wallet">History</Link>
+            </li>
+          </ul>
+
+          <ul>
+            <li>
+              <Link onClick={switchMenu} to="/user/profile">Profile</Link>
+            </li>
+            <li>
+              <Link onClick={switchMenu} to="/user/settings">Settings</Link>
             </li>
             <li>
               <a onClick={signOut} href="/">

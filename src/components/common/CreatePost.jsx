@@ -11,6 +11,7 @@ import { useInterval } from '../../lib/helpers'
 
 import EditorForm from './EditorForm'
 import Editor from './Editor'
+import Markdown from '../Post/Markdown'
 
 const editorInitialState = {
   article: {
@@ -103,20 +104,24 @@ export default ({ navigate }) => {
 
   return (
     <div className="blog">
-      <Helmet title="article" />
+      <Helmet title="Article editor" />
       <section className="container">
-        <h1>
-          <strong>Article:</strong> {editorState.article.title}
-        </h1>
-        <div className="blog__post_item">
-          <EditorForm article={editorState.article} validateArticle={validateArticle} />
+        <Markdown markdown={`# ${editorState.article.title}`} />
+        <div className="page_item">
+          <EditorForm
+            isNewPost={true}
+            article={editorState.article}
+            validateArticle={validateArticle}
+          />
         </div>
-        <div className={cn('status', { error: editorState.statusMessage })}>
-          {editorState.statusMessage}
-        </div>
+        <div className="page_item editor chainsub_editor">
+          <div className={cn('title', { error: editorState.statusMessage })}>
+            {editorState.statusMessage}
+          </div>
 
-        <div className="blog__post_item">
-          <Editor article={editorState.article} validateArticle={validateArticle} />
+          <div className="content">
+            <Editor article={editorState.article} validateArticle={validateArticle} />
+          </div>
         </div>
       </section>
     </div>

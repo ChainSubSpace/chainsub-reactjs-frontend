@@ -12,19 +12,30 @@ import { schema, schemaConfig } from '../data/schema-roadmap'
 import References from '../components/home/References'
 import Api from '../components/home/Api'
 import '../styles/main.scss'
+import WIP from '../components/common/WIP'
 
-export default props => (
-  <Layout location={props.location}>
-    <div className="home">
-      <Helmet title="Blockchain Dapps Platform" />
-      <AllInOne />
-      <Ecosystem />
-      <Giants />
-      <GettingStarted />
-      <Schema schema={schema} config={schemaConfig} />
-      <Expose />
-      <Api />
-      <References />
-    </div>
-  </Layout>
-)
+export default ({ location }) => {
+  return (
+    <Layout location={location}>
+      <div className="roadmap">
+        <Helmet title="Roadmap" />
+        <WIP />
+      </div>
+    </Layout>
+  )
+}
+// export default props => (
+//   <Layout location={props.location}>
+//     <div className="home">
+//       <Helmet title="Blockchain Dapps Platform" />
+//       <AllInOne />
+//       <Ecosystem />
+//       <Giants />
+//       <GettingStarted />
+//       <Schema schema={schema} config={schemaConfig} />
+//       <Expose />
+//       <Api />
+//       <References />
+//     </div>
+//   </Layout>
+// )

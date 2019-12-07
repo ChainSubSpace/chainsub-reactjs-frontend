@@ -17,15 +17,14 @@ const validationSchema = Yup.object().shape({
   category: Yup.string().required('Category is required!')
 })
 
-export default ({ article, validateArticle }) => {
+export default ({ article, validateArticle, isNewPost }) => {
   const categories = useQuery(GET_CATEGORY_BY_SLUG)
 
   const [upload] = useMutation(UPLOAD)
 
   const heroUploadButton = useRef()
 
-
-  const [heroImage, setHeroImage] = useState((article.heroImage) ? `https://backend.chainsub.space${article.heroImage}` : null)
+  const [heroImage, setHeroImage] = useState(article.heroImage ? article.heroImage : null)
 
   return (
     <div>
@@ -33,18 +32,7 @@ export default ({ article, validateArticle }) => {
         initialValues={{ title: article.title, category: article.category, heroImage: '' }}
         validationSchema={validationSchema}
         validateOnChange={true}
-        validate={async values => {
-          const formObject = values
-          const file = formObject.heroImage
-
-          const data = await upload({ variables: { file } })
-
-          setHeroImage(`https://backend.chainsub.space${data.data.upload.url}`)
-
-          formObject.heroImage = data.data.upload.url
-
-          validateArticle(formObject)
-        }}
+        validate={async values => validateArticle(values)}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(false)
         }}
@@ -54,10 +42,7 @@ export default ({ article, validateArticle }) => {
           errors,
           status,
           touched,
-          setFieldValue,
-          values,
-          handleChange,
-          handleBlur
+          setFieldValue
         }) => (
           <Form className="form article_form">
             <div className={cn('status', { error: status })}>{status}</div>
@@ -72,7 +57,6 @@ export default ({ article, validateArticle }) => {
                   name="title"
                   placeholder="Article title"
                   autoComplete="off"
-                  // value={article.title}
                 />
               </li>
               <li>
@@ -85,7 +69,6 @@ export default ({ article, validateArticle }) => {
                   name="category"
                   placeholder="Select a category"
                   autoComplete="off"
-                  // value={article.category}
                 >
                   <option value="">Select a category</option>
                   {get(categories, 'data.categories', []).map(category => (
@@ -96,7 +79,7 @@ export default ({ article, validateArticle }) => {
                 </Field>
               </li>
             </ul>
-            {(article.title) && (
+            {!isNewPost && (
               <button
                 className="btn small"
                 type="button"
@@ -108,17 +91,23 @@ export default ({ article, validateArticle }) => {
             )}
 
             <input
-              style={{display: 'none'}}
+              style={{ display: 'none' }}
               ref={heroUploadButton}
               id="file"
               name="heroImage"
               type="file"
-              onChange={async event => setFieldValue('heroImage', event.currentTarget.files[0])}
+              onChange={async event => {
+                const file = event.currentTarget.files[0]
+                const data = await upload({ variables: { file } })
+                const filePath = data.data.upload.url
+                setHeroImage(filePath)
+                setFieldValue('heroImage', filePath)
+              }}
             />
 
             {heroImage && (
               <div style={{ margin: '10px 0' }}>
-                <img alt="Hero" src={heroImage} />
+                <img alt="Hero" src={`https://backend.chainsub.space${heroImage}`} />
               </div>
             )}
           </Form>

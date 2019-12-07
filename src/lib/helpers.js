@@ -27,6 +27,7 @@ export const useInterval = (callback, delay) => {
 export const formatDate = isoDate => DateTime.fromISO(isoDate).toRelative().toString()
 
 export const prettyPrintAmount = (amount, decimalPlaces=2, ticker='TRTL') => {
+  if (isNaN(amount)) return 0
   // Get the amount we need to divide atomic units by X decimal places = 100
   const divisor = Math.pow(10, decimalPlaces)
   const dollars = amount >= 0 ? Math.floor(amount / divisor) : Math.ceil(amount / divisor)

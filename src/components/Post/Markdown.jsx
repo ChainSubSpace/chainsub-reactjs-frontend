@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import GithubSlugger from 'github-slugger'
-
+// import "prismjs/components/prism-graphql.min"
 // import { createBrowserHistory } from 'history'
 
 import Prism from './Prism'
@@ -10,20 +10,27 @@ import Prism from './Prism'
 
 function CustomImg(props) {
   return (
-    <span  style={{ display: 'block', textAlign: 'center', margin:'20px 0' }}>
+    <span style={{ display: 'block', textAlign: 'center', margin: '20px 0' }}>
       <img alt="uploaded" src={props.src} />
     </span>
   )
 }
 
-function CustomCode({value: code}) {
-  const html = Prism.highlight(code, Prism.languages.jsx, 'jsx')
+const CustomCode = ({ language, value: code }) => {
+  if (!language) return null
+  if ( !['javascript', 'graphql'].includes(language)) return null
+  console.log(language)
+  const html = Prism.highlight(code, Prism.languages[language], language)
 
-  return <div className="codeBlock"><code className='language-js' dangerouslySetInnerHTML={{__html: html}} /></div>
-  return <div>1</div>
+  return (
+    <div className="codeBlock">
+      <code className="language-js" dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  )
 }
 
 function CustomHeading(props) {
+  if (props.children.length === 0) return <h1>title</h1>
   const { value } = props.children[0].props
   const CustomTag = `h${props.level}`
   const slugger = new GithubSlugger()
