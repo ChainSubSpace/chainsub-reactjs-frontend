@@ -19,6 +19,10 @@
 
 ChainSub is a media platform where you can get paid with Turtle Coin and various other cryptocurrencies (TBA) for your content.
 
+> `ChainSub` was inspired by [Turtle Coin Hackathon](https://crypto-hackathon.com/), and is still in early beta.
+
+Please Read an [article](http://localhost:8000/blog/ChainSub-the-publishing-platform-you-always-wanted.) about the project!
+
 ## 📝 Tech Specs.
 
 - ReactJS
@@ -32,6 +36,7 @@ The `ChainSub` frontend is using the most advanced web development technology st
 
 - Builtin multicurrency payment/funding/donation functionality.
 - Full flagged Turtle Coin web wallet.
+- Direct anonymous payments/donation from any turtle wallet, or from your personal wallet in the system.
 - Instant, on-chain transactions.
 - Multi-author blogging/media platform.
 - Outstanding editing and collaboration experience.
