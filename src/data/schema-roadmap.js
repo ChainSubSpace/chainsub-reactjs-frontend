@@ -4,7 +4,7 @@ import {STATUSES} from '../components/schema/schemaHelpers'
 export const schemaConfig = {
   title: (
     <Fragment>
-      The Catalyst Network <strong>Roadmap</strong>
+      Chainsub.Space's <strong>journey</strong>
     </Fragment>
   ),
   theme: 'theme_two'
@@ -12,221 +12,159 @@ export const schemaConfig = {
 
 export const schema =  [
   {
-    title: 'November 2018',
+    title: 'In the beginning...',
     items: [
       {
-        status: STATUSES.DONE,
+        status: STATUSES.NULL,
         icon: 'rocket',
-        link: '/docs/catalyst-specs/catalyst-specs/',
-        title: 'The project start',
+        link: 'https://crypto-hackathon.com',
+        title: 'Inspiration',
         text:
-          'Initial Idea was born and through community discussion, the technical specs were approved.'
+          'N8tb1t and Hooftly decide to enter Turtlecoins Hackathon.'
       }
     ]
   },
   {
-    title: 'December 2018',
+    title: 'A Project is Born',
     items: [
       {
-        status: STATUSES.DONE,
+        status: STATUSES.NULL,
         icon: 'megaphone',
-        link: '/docs/links/#bitcointalk',
-        title: 'Bitcointalk Announcement',
-        text: 'The bitcoinTalk Announcement, things got serious now the world knows about Catalyst.'
+        link: 'https://github.com/ChainSubSpace/chainsub-backend-server',
+        title: 'Work Begins',
+        text: '(December 1st) n8tbit begins to sculpt the backend while hooftly begins to write content and work on styling'
       },
       {
-        status: STATUSES.DONE,
-        icon: 'linode',
-        link: '/docs/catalyst-specs/pools',
-        title: 'Infrastructure building',
+        status: STATUSES.NULL,
+        icon: 'github',
+        link: 'https://github.com/ChainSubSpace/chainsub-reactjs-frontend',
+        title: 'Submission',
         text:
-          'At this point, the CLI was compiled and community members started to deploy public pools.'
+          '(December 9th) ChainSub.space begins beta and is submitted to the Hackathon.'
       }
     ]
   },
   {
-    title: 'Q1 — 2019',
+    title: "What's to come",
     items: [
       {
-        status: STATUSES.DONE,
-        icon: 'user-add',
-        link: '/docs/links/#links',
-        title: 'Community',
+        status: STATUSES.NULL,
+        icon: 'doc',
+        link: '',
+        title: 'Continued Work',
         text:
-          'Community building, creating Discord chat and various media sources, like Reddit, to spread the word about Catalyst'
+          'n8tbit and hooftly will continue working on developing the platform eventually bringing it out of beta'
       },
       {
-        status: STATUSES.DONE,
-        icon: 'exchange',
-        link: '/docs/links/#exchanges',
-        title: '1st Exchange',
+        status: STATUSES.NULL,
+        icon: 'expose',
+        link: '',
+        title: 'Bring CSS to the world',
         text:
-          'Listing on FirstCryptoBankExchange to allow our community members to trade their CX assets.'
+          'Create and employ strategies to bring Chiansub.space to users worldwide.'
       }
     ]
   },
   {
-    title: 'Q2 — 2019',
+    title: 'How will we do this?',
     items: [
       {
-        status: STATUSES.DONE,
-        icon: 'wallet',
-        link: '/docs/catalyst-specs/getting-started',
-        title: 'GUI Wallet',
+        status: STATUSES.NULL,
+        icon: 'security',
+        link: '',
+        title: 'UI/UX Improvements',
         text:
-          'Creating GUI wallet, for better user experience, and to allow people to sync remotely.'
+          'As this is a beta and MVC for the Turtlecoin Hackathon the UI/UX will be worked on heavily in the future.'
       },
       {
-        status: STATUSES.DONE,
-        icon: 'wallet',
-        link: '/docs/catalyst-specs/getting-started',
-        title: 'Paper Wallet',
-        text:
-          'now by writing down and protecting the mnemonic seed, you will always have access to your funds!'
-      },
-      {
-        status: STATUSES.DONE,
-        icon: 'exchange',
-        link: '/docs/links/#exchanges',
-        title: '2nd Exchange',
-        text: 'Listing on TradeCX to bing more trading volume, and give more options to the users.'
-      }
-    ]
-  },
-  {
-    title: 'Q3 — 2019',
-    items: [
-      {
-        status: STATUSES.DONE,
+        status: STATUSES.NULL,
         icon: 'bitcoin',
-        link: '/docs/funding',
-        title: 'Funding System',
+        link: '',
+        title: 'Extended Support',
         text:
-          'The Catalyst Funding System was put in to action by members of the Catalyst Community. Our goal is to have our community members fund each other in order to help Catalyst grow.'
+          'CSS Plans to eventually support multiple currencies so authors can choose how their readers can tip them.'
       },
       {
-        status: STATUSES.DONE,
-        icon: 'flow-cross',
-        link: '/docs/catalyst-specs/catalyst-specs',
-        title: 'Algo. Change',
-        text:
-          'The algorithm change to Argon2/Chukwa to accelerate blockchain verification and make Catalyst’s network faster than the networks of the other CryptoNote-based cryptocurrencies.'
+        status: STATUSES.NULL,
+        icon: 'app',
+        link: '',
+        title: 'Mobile App',
+        text: 'CSS wants to provide an easy to access Smart Phone App for people on the go. Use CSS anywhere anytime with ease.'
       }
     ]
   },
   {
-    title: 'Q4 - 2019',
+    title: 'Future Features',
     items: [
       {
-        status: STATUSES.IN_PROGRESS,
+        status: STATUSES.NULL,
         icon: 'test',
         link: '/blog',
-        title: 'Article series',
+        title: 'Collaborative Editing',
         text:
-          'Starting a series of articles on Medium social platform with news and updates about Catalyst life.'
+          'Addition of collabrative editing so that you and your colleagues can work together in real time.'
       },
       {
-        status: STATUSES.FUNDING,
-        icon: 'mobile',
-        link: 'https://funding.cryptocatalyst.net/proposal/12',
-        title: 'Mobile wallet',
+        status: STATUSES.NULL,
+        icon: 'opensource',
+        link: '',
+        title: 'Custom Channel Creation',
         text:
-          'It will allow CX users to use their smartphones to make instant payments and use CX Dapp services.'
+          'Authors will have the abilty to choose a Channel or create one where they and others can curate their content.'
       },
       {
-        status: STATUSES.FUNDING,
-        icon: 'chrome',
-        link: 'https://funding.cryptocatalyst.net/proposal/13',
-        title: 'Web wallet',
+        status: STATUSES.NULL,
+        icon: 'validation',
+        link: '',
+        title: 'Subscription',
         text:
-          'Integrated into our website It will allow users to have access to their funds without any additional software.'
+          'Readers will be able to subscribe to authors to allow them to always stay up to date with their favorite content'
       },
       {
-        status: STATUSES.IN_PROGRESS,
-        icon: 'website',
-        link: '/docs/links/#links',
-        title: 'New site',
-        text:
-          'Catalyst portal to host all the related data about the project, and provide various blockchain-related services.'
-      },
-      {
-        status: STATUSES.DONE,
-        icon: 'sitemap',
-        link: '/docs/links/#3d-nodes-map',
-        title: 'Nodes 3D Map',
-        text:
-          'The detailed three-dimensional map of Catalyst network nodes, to give an overview of the current network state.'
-      },
-      {
-        status: STATUSES.IN_PROGRESS,
+        status: STATUSES.NULL,
         icon: 'analytics',
-        link: '/docs/analytics',
-        title: 'Analytics',
+        link: '',
+        title: 'Author Ratings',
         text:
-          'The system will provide services to enhance and improve your trading experience on specific exchanges.'
+          'A rating system where readers can rate authors allowing popular authors to be fatured in a spotlight section.'
+      },
+      {
+        status: STATUSES.NULL,
+        icon: 'mobile',
+        link: '',
+        title: 'Push Notifications',
+        text:
+          'A push notification service to let you know how all your posts are doing. Stay up to date, all the time.'
+      },
+      {
+        status: STATUSES.NULL,
+        icon: 'expose',
+        link: '',
+        title: 'Multi-Language Support',
+        text:
+          'We plan to support a multitude of languages so you can patricipate with the language of our choosing.'
       }
     ]
   },
   {
-    title: 'Q1 2020',
+    title: 'Get Involved!',
     items: [
       {
-        status: STATUSES.FUNDING,
-        icon: 'exchange',
-        link: 'https://funding.cryptocatalyst.net/proposal/15',
-        title: 'More exchanges',
+        status: STATUSES.NULL,
+        icon: 'discord',
+        link: 'https://discord.gg/yAkzGYB',
+        title: 'Join Discord!',
         text:
-          'We want Catalyst to be as accessible to everyone, thus, the more exchanges we have the better.'
+          "Join Chainsub.space's discord and come help us build a community around the project."
       },
       {
-        status: STATUSES.TODO,
-        icon: 'coinmarketcap',
-        link: '/docs/links/#coinmarketcap-and-coingecko',
-        title: 'CMC & CG listing',
+        status: STATUSES.NULL,
+        icon: 'github',
+        link: 'https://github.com/ChainSubSpace',
+        title: 'Contribute!',
         text:
-          'Listing on CoinMarketCap and CoinGecko to gain better exposure, and let more people know about the project.'
-      },
-      {
-        status: STATUSES.FUNDING,
-        icon: 'chat',
-        link: 'https://funding.cryptocatalyst.net/proposal/14',
-        title: 'Add P2P Chat',
-        text:
-          'Add P2P chat into GUI, web and mobile wallets to allow Catalyst users to send secure messages to each other.'
+          'Chainsub.space is open source and as such anyone is free to contribute.  Shoot over to github and take a look.'
       }
     ]
   },
-  {
-    title: 'Q2 2020',
-    items: [
-      {
-        status: STATUSES.FUNDING,
-        icon: 'exchange',
-        link: 'https://funding.cryptocatalyst.net/proposal/14',
-        title: 'OTC trading',
-        text:
-          'Add OTC trading functionality to the GUI, web and mobile wallets. To make Catalyst an exchange independent currency.'
-      },
-      {
-        status: STATUSES.TODO,
-        icon: 'bitcoin',
-        link: '/docs/devs/sponsors',
-        title: 'Sponsorship',
-        text:
-          'Recruit influential sponsors into CX community who believe in our goals, to support further development and natural growth of the project appreciation.'
-      }
-    ]
-  },
-  {
-    title: 'Q3-Q4 2020',
-    items: [
-      {
-        status: STATUSES.FUNDING,
-        icon: 'security',
-        link: 'https://funding.cryptocatalyst.net/proposal/14',
-        title: 'Dapps',
-        text: `Development and support of various decentralized applications secured by Catalyst's blockchain network.`
-      }
-    ]
-  }
 ]

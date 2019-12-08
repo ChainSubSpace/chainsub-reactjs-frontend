@@ -10,9 +10,8 @@ export default ({ location }) => {
     <Layout location={location}>
       <div className="roadmap">
         <Helmet title="Roadmap" />
-        <WIP />
+        <Schema schema={schema} config={schemaConfig} />
       </div>
     </Layout>
   )
 }
-// <Schema schema={schema} config={schemaConfig} />

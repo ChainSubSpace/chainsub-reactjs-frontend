@@ -10,7 +10,7 @@ export default ({ user }) => (
     <Helmet title="hello" />
     <section className="container">
       <h1>
-        {user.username} main wallet <strong>transactions</strong> history.
+        {user.username} Main wallet <strong>transaction</strong> history.
       </h1>
       <InTransactions />
       <OutTransactions />
