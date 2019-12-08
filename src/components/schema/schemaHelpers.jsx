@@ -6,7 +6,8 @@ export const STATUSES = {
   TODO: { className: 'status__todo', title: '[TODO]' },
   DONE: { className: 'status__done', title: '[DONE]' },
   IN_PROGRESS: { className: 'status__in_progress', title: '[IN PROGRESS]' },
-  FUNDING: { className: 'status__funding', title: '[FUNDING REQUIRED]' }
+  FUNDING: { className: 'status__funding', title: '[FUNDING REQUIRED]' },
+  NULL: { className: 'status__null', title: '' }
 }
 
 const Status = ({ status }) => <strong className={status.className}>{status.title}</strong>
