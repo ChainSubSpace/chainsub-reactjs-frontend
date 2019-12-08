@@ -21,7 +21,9 @@ ChainSub is a media platform where you can get paid with Turtle Coin and various
 
 > `ChainSub` was inspired by [Turtle Coin Hackathon](https://crypto-hackathon.com/), and is still in early beta.
 
-Please Read an [article](http://localhost:8000/blog/ChainSub-the-publishing-platform-you-always-wanted.) about the project!
+- Please, read an [article](http://chainsub.space/blog/ChainSub-The-publishing-platform-you-always-wanted.) about the project!
+- Please, read an [article](http://chainsub.space/blog/ChainSub-Frontend-features-overview.) about the project frontend!
+- Please, read an [article](http://chainsub.space/blog/ChainSub-Backend-features-overview.) about the project backend!
 
 ## 📝 Tech Specs.
 
