@@ -7,7 +7,7 @@ import OutTransactions from './OutTransactions'
 
 export default ({ user }) => (
   <div className="blog">
-    <Helmet title="hello" />
+    <Helmet title="Transactions history" />
     <section className="container">
       <h1>
         {user.username} Main wallet <strong>transaction</strong> history.

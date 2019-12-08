@@ -7,7 +7,7 @@ import OutTransactions from './OutTransactions'
 
 export default ({ slug }) => (
   <div className="blog">
-    <Helmet title="hello" />
+    <Helmet title="Transactions history" />
     <section className="container">
       <h1>
         Article <strong>transactions</strong> history.
