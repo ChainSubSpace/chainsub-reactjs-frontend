@@ -28,11 +28,7 @@ export default ({ article, validateArticle }) => {
       onChange={handleChange}
       theme={{ hiddenToolbarButtons, ...theme }}
       uploadImage={async file => {
-        console.log(file)
         const data = await upload({ variables: { file } })
-        console.log(data)
-        // const result = await s3.upload(file)
-        console.log(data.data.upload.url)
         return `https://backend.chainsub.space${data.data.upload.url}`
       }}
     />

@@ -33,7 +33,8 @@ export default ({ slug, location }) => {
   const post = get(data, 'postData.post', null)
   const wallet = get(data, 'postData.wallet', null)
 
-  if (networkStatus < 7 && !post) return null
+  if (!post) return null
+
 
   const disqusConfig = {
     url: `https://chainsub.space${location.pathname}`,

@@ -1,7 +1,7 @@
 export default [
   {
     text: 'About',
-    path: '/blog/ChainSub-The-publishing-platform-you-always-wanted',
+    path: '/blog/ChainSub-The-publishing-platform-you-always-wanted.',
   },
   {
     text: 'News',

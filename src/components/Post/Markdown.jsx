@@ -19,7 +19,7 @@ function CustomImg(props) {
 const CustomCode = ({ language, value: code }) => {
   if (!language) return null
   if ( !['javascript', 'graphql'].includes(language)) return null
-  console.log(language)
+
   const html = Prism.highlight(code, Prism.languages[language], language)
 
   return (
