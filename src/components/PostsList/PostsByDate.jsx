@@ -8,9 +8,9 @@ export default () => (
       <Helmet title="Publishing platform" />
       <section className="container">
         <h1>
-          The list of <strong>latest</strong> articles.
+          <strong>Recent</strong> posts.
         </h1>
-        <PostsList displayName="GetPostsByDate" />
+        <PostsList displayName="GetPostsByDate" limit={4} />
       </section>
     </div>
 )

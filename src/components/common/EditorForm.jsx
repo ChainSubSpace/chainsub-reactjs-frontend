@@ -32,7 +32,9 @@ export default ({ article, validateArticle, isNewPost }) => {
         initialValues={{ title: article.title, category: article.category, heroImage: '' }}
         validationSchema={validationSchema}
         validateOnChange={true}
-        validate={async values => validateArticle(values)}
+        validate={async values => {
+          validateArticle({...values, heroImage})
+        }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(false)
         }}
@@ -57,7 +59,7 @@ export default ({ article, validateArticle, isNewPost }) => {
                   name="title"
                   placeholder="Article title"
                   autoComplete="off"
-                />
+z                />
               </li>
               <li>
                 <ErrorMessage className="error" name="category" component="div" />
