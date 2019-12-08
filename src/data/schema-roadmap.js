@@ -99,7 +99,7 @@ export const schema =  [
       {
         status: STATUSES.NULL,
         icon: 'test',
-        link: '/blog',
+        link: '',
         title: 'Collaborative Editing',
         text:
           'Addition of collabrative editing so that you and your colleagues can work together in real time.'
