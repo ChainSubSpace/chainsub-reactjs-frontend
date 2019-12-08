@@ -53,6 +53,22 @@ const Item = ({
       </div>
     )
   }
+  if (!link && status===STATUSES.NULL) {
+    return (
+      <div className="schema__item">
+        <div className="schema__card">
+          <i className={`schema__icon icon-line-${icon}`} />
+          <div className="schema__content">
+            <h3>{title}</h3>
+            <p>
+              {text} <Status status={status} />
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+
+  }
 
   return (
     <ItemLink to={link} className="schema__item">
